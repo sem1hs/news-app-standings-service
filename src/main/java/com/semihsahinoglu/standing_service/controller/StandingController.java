@@ -1,5 +1,6 @@
 package com.semihsahinoglu.standing_service.controller;
 
+import com.semihsahinoglu.standing_service.dto.ApiResponse;
 import com.semihsahinoglu.standing_service.dto.StandingCreateRequest;
 import com.semihsahinoglu.standing_service.dto.StandingResponse;
 import com.semihsahinoglu.standing_service.dto.StandingUpdateRequest;
@@ -28,19 +29,19 @@ public class StandingController {
     }
 
     @GetMapping("/{leagueId}/{teamId}")
-    public ResponseEntity<StandingResponse> getByLeagueAndTeamId(@PathVariable Long leagueId, @PathVariable Long teamId) {
+    public ResponseEntity<ApiResponse> getByLeagueAndTeamId(@PathVariable Long leagueId, @PathVariable Long teamId) {
         StandingResponse response = standingService.getStanding(leagueId, teamId);
         return ResponseEntity.ok().body(response);
     }
 
     @PostMapping
-    public ResponseEntity<StandingResponse> create(@RequestBody @Valid StandingCreateRequest request) {
+    public ResponseEntity<ApiResponse> create(@RequestBody @Valid StandingCreateRequest request) {
         StandingResponse response = standingService.createStanding(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @PatchMapping("/{leagueId}/{teamId}")
-    public ResponseEntity<StandingResponse> update(@PathVariable Long leagueId, @PathVariable Long teamId, @RequestBody  StandingUpdateRequest request) {
+    public ResponseEntity<ApiResponse> update(@PathVariable Long leagueId, @PathVariable Long teamId, @RequestBody  StandingUpdateRequest request) {
         StandingResponse response = standingService.updateStanding(leagueId, teamId, request);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }

@@ -16,7 +16,7 @@ public record StandingResponse(
         Integer goalsAgainst,
         Integer goalDifference,
         Integer points
-) {
+) implements ApiResponse {
 
     public static Builder builder() {
         return new Builder();
