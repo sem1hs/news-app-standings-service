@@ -14,6 +14,20 @@ import java.time.LocalDateTime;
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
+    @ExceptionHandler(StandingNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleStandingNotFoundException(StandingNotFoundException exception, HttpServletRequest request) {
+
+        ErrorResponse errorResponse = new ErrorResponse(
+                HttpStatus.NOT_FOUND.value(),
+                HttpStatus.NOT_FOUND.getReasonPhrase(),
+                exception.getMessage(),
+                request.getRequestURI(),
+                LocalDateTime.now()
+        );
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
+    }
+
     @ExceptionHandler(LeagueNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleLeagueNotFoundException(LeagueNotFoundException exception, HttpServletRequest request) {
 
