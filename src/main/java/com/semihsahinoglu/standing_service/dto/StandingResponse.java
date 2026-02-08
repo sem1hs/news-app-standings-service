@@ -1,7 +1,7 @@
 package com.semihsahinoglu.standing_service.dto;
 
 public record StandingResponse(
-
+        Long id,
         Long leagueId,
         Long teamId,
 
@@ -23,6 +23,7 @@ public record StandingResponse(
     }
 
     public static class Builder {
+        private Long id;
         private Long leagueId;
         private Long teamId;
         private String leagueName;
@@ -37,6 +38,11 @@ public record StandingResponse(
         private Integer points;
 
         private Builder() {
+        }
+
+        public Builder id(Long id) {
+            this.id = id;
+            return this;
         }
 
         public Builder leagueId(Long leagueId) {
@@ -100,7 +106,7 @@ public record StandingResponse(
         }
 
         public StandingResponse build() {
-            return new StandingResponse(leagueId, teamId, leagueName, teamName, played, won, draw, lost, goalsFor, goalsAgainst, goalDifference, points);
+            return new StandingResponse(id, leagueId, teamId, leagueName, teamName, played, won, draw, lost, goalsFor, goalsAgainst, goalDifference, points);
         }
     }
 }

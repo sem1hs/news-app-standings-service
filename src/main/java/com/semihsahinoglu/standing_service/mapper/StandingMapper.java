@@ -13,6 +13,7 @@ public class StandingMapper {
         if (standing == null || leagueAndTeamName == null) return null;
 
         return StandingResponse.builder()
+                .id(standing.getId())
                 .leagueId(standing.getLeagueId())
                 .teamId(standing.getTeamId())
                 .leagueName(leagueAndTeamName.leagueName())
